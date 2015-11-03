@@ -1,0 +1,4 @@
+#注释忽略的文件
+*.jpg
+#依赖包
+node_modules
