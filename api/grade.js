@@ -15,46 +15,46 @@ var fetch = function(req, res, next) {
   for (x in termstring)
   {
     if(term_grade[x] == termstring){      //根据时间串定官网term序号
-      term = Number(x)+1;
+      term = Number(x);
     }
   }
 
+          //console.log(term);
+          //return;
   // first query from db to save time.
-  GradeProxy.getGradeByUsername(username, term, function(err, grade){
+  GradeProxy.getGradeByUsername(username, term, function(err, grade, user){
     // user does not exist or other errors
     if(err){
       switch(err.message){
-        case 'The grade does not exist.':break;
+        case 'The grade does not exist.':
+          console.log("The grade does not exist.");
+          break;
         default: next(err);
       }
     }
     if(grade){
-      UserProxy.getUserByUsername(username, function(err1, user){
-        res.json(_.extend({
-          'status': 'ok'
-        }, {
-          'name': user.name
-        }, {
-          'grade': JSON.parse(grade.grade)
-        }, {
-          'term': term
-        }));
-      });
+      res.json(_.extend({
+        'status': 'ok'
+      }, {
+        'name': user.name
+      }, {
+        'grade': JSON.parse(grade.grade)
+      }));
     } else {
       // does not exist in db, fetch from network
       fetchGrade(username, password, term, function(err2, name, grade1){
         if(err2){
           switch(err2.message){
-            case 'login failed':
+            case 'School network connection failure':
               res.json({
-                'status': 'login failed'
+                'status': 'School network connection failure'
               });
             break;
-            case 'error':
-              res.json({
-                'status': 'login failed'
-              });
-            break;
+            default:
+				    	res.json({
+				    		'status':
+				    		'internal error' //内部错误
+				    	});
           }
         } else {
           grade1 = JSON.parse(grade1);
@@ -64,8 +64,6 @@ var fetch = function(req, res, next) {
             'name': name
           }, {
             'grade': grade1
-          }, {
-            'term': term
           }));
         }
       });

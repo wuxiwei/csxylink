@@ -23,7 +23,7 @@ exports.getGradeByUsername = function (username, term, callback) {
           return callback(null, null);
         } else {
           var rv = grade.grades[idx];
-          return callback(null, rv);
+          return callback(null, rv, user);
         }
       });
     } else {
@@ -40,7 +40,7 @@ exports.UpdateGradeByUsername = function(username, grade, term, callback){
     if(user){
       Grade.findOne({user: user._id}, function(err1, grade1){
         if (err1) {
-          return callback(err);
+          return callback(err1);
         }
         if (!grade1) {
           return callback(new Error('The grade does not exist.'));
@@ -58,9 +58,9 @@ exports.UpdateGradeByUsername = function(username, grade, term, callback){
   });
 };
 
-exports.newAndSave = function (user, callback) {
+exports.newAndSave = function (user_id, callback) {
   var grade = new Grade();
-  grade.user = user;
+  grade.user = user_id;
   grade.save(function(err){
     if(err){
       return callback(err);

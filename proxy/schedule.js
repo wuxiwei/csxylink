@@ -24,7 +24,7 @@ exports.getScheduleByUsername = function (username, term, callback) {
           return callback(null, null);
         } else {
           var rv = schedule.schedules[idx];
-          return callback(null, rv);
+          return callback(null, rv, user);
         }
       });
     } else {
@@ -41,7 +41,7 @@ exports.UpdateScheduleByUsername = function(username, schedule, term, callback){
     if(user){
       Schedule.findOne({user: user._id}, function(err1, schedule1){
         if (err1) {
-          return callback(err);
+          return callback(err1);
         }
         if (!schedule1) {
           return callback(new Error('The schedule does not exist.'));
@@ -59,9 +59,9 @@ exports.UpdateScheduleByUsername = function(username, schedule, term, callback){
   });
 };
 
-exports.newAndSave = function (user, callback) {
+exports.newAndSave = function (user_id, callback) {
   var schedule = new Schedule();
-  schedule.user = user;
+  schedule.user = user_id;
   schedule.save(function(err){
     if(err){
       return callback(err);
