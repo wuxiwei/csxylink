@@ -10,9 +10,9 @@ mongoose.connect(config.db, function(err) {
 
 // models
 require('./user');
-//require('./grade');
-//require('./schedule');
+require('./grade');
+require('./schedule');
 exports.User = mongoose.model('User');
-//exports.Grade = mongoose.model('Grade');
-//exports.Schedule = mongoose.model('Schedule');
+exports.Grade = mongoose.model('Grade');
+exports.Schedule = mongoose.model('Schedule');
 

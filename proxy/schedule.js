@@ -4,6 +4,7 @@ var Schedule = models.Schedule;
 var User = require('./user');
 var UserProxy = require('../proxy').User;
 
+//课表连接数据库操作
 
 exports.getScheduleByUsername = function (username, term, callback) {
   UserProxy.getUserByUsername(username, function(err, user){

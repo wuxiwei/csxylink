@@ -1,14 +1,15 @@
 var models = require('../models');
 var User = models.User;
 
+//学生信息连接数据库操作
 
 exports.getUserByUsername = function (username, callback) {
   User.findOne({'username': username}, callback);
 };
 
-exports.getUsersByLoginName = function (Loginname, callback) {
-  User.find({'username': Loginname}, callback);
-};
+//exports.getUsersByLoginName = function (Loginname, callback) {
+  //User.find({'username': Loginname}, callback);
+//};
 
 
 
