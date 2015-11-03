@@ -24,20 +24,20 @@ function login(username, password, callback) {
       }
       Cookies = res.headers['set-cookie'].pop().split(';')[0];       //获取该会话cookie
       //request validation image
-      var req = request.get(validateImgUrl);
-      req.set('Cookie', Cookies);
+      var req = request.get(validateImgUrl);     //获取验证码图片
+      req.set('Cookie', Cookies);           //设置cookie，保证同一个会话验证码
       req.end(function(err1, res1) {
         if (err1) {
           return callback(err1);
         }
-        var s64 = Buffer(res1.body).toString('base64');
-        base64_decode(s64,'1.jpg');
-        nodecr.process('./1.jpg', function(err2, result) {
+        var s64 = Buffer(res1.body).toString('base64');       //将获取数据流转为buffer后再转为base64编码数据流
+        base64_decode(s64,'1.jpg');      //函数实现将base64编码数据流转为.jpg格式图片到本目录下
+        nodecr.process('./1.jpg', function(err2, result) {        //nodecr包实现对图片解析得到验证码
           if (err2) {
             return callback(err2);
           } else {
             //simulate login
-            var req2 = request.post(loginUrl).type('form');
+            var req2 = request.post(loginUrl).type('form');     //表单提交实现伪登陆
             req2.set('Cookie', Cookies);
             var params = {
               'WebUserNO': username.toString(),

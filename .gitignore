@@ -2,3 +2,5 @@
 *.jpg
 #依赖包
 node_modules
+#交换文件
+.*.swp
