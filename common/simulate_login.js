@@ -32,8 +32,8 @@ function login(username, password, callback) {
 			}
       //可以找更好的处理图片解析验证码包
 			var s64 = Buffer(res1.body).toString('base64'); //将获取数据流转为buffer后再转为base64编码数据流
-			base64_decode(s64, 'test.jpg'); //函数实现将base64编码数据流转为.jpg格式图片到本目录下
-			nodecr.process('./test.jpg', function(err2, result) { //nodecr包实现对图片解析得到验证码
+			base64_decode(s64, 'image/'+username+'.jpg'); //函数实现将base64编码数据流转为.jpg格式图片到本目录下
+			nodecr.process('image/'+username+'.jpg', function(err2, result) { //nodecr包实现对图片解析得到验证码
 				if (err2) {
 					return callback(new Error('Error image analysis'));
 				} else {
@@ -56,38 +56,6 @@ function login(username, password, callback) {
 							var name = $('td[align=left]').text();
 							// if user not in mongodb then insert the user into db
 							// if user not in mongodb then insert the user into db
-							UserProxy.getUserByUsername(username, function(err4, user) {
-								if (err4) {
-									console.log(new Error('database error'));
-								}
-								if (!user) {
-									UserProxy.newAndSave(name, username, password, function(err5, savedUser) {
-										if (err5) {
-											return callback(err5);
-										} else {
-											var ep = EventProxy.create('schedule', 'grade', function(err6, err7) {   //异步监听处理
-												if (err6) {
-													return callback(err6);
-												}
-												if (err7) {
-													return callback(err7);
-												}
-											});
-											ScheduleProxy.newAndSave(savedUser, function(_err) {
-												if (_err) {
-													ep.emit('schedule', _err);
-												}
-											});
-											GradeProxy.newAndSave(savedUser, function(_err) {
-												if (_err) {
-													ep.emit('grade', _err);
-												}
-											});
-										}
-									});
-								}
-							});
-
 							return callback(null, name, Cookies);
 						} else {
 							console.log('sssssssssssssssssss' + result.substring(0, 4) + "=" + username + "=" + password);

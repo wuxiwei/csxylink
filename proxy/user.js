@@ -7,11 +7,16 @@ exports.getUserByUsername = function (username, callback) {
   User.findOne({'username': username}, callback);
 };
 
-//exports.getUsersByLoginName = function (Loginname, callback) {
-  //User.find({'username': Loginname}, callback);
-//};
-
-
+exports.UpdateUserPassword = function(username, password, callback){
+  var conditions = {username : username};
+  var update     = {$set : {password : password}};
+  var options    = {upsert : true};
+  User.update(conditions, update, options, function(err){
+    if(err) {
+      return callback(err);
+    }
+  });
+};
 
 exports.newAndSave = function (name, username, password, callback) {
   var user = new User();
@@ -20,9 +25,9 @@ exports.newAndSave = function (name, username, password, callback) {
   user.password = password;
   user.save(function(err){
     if(err){
-      return callback(err);
+      return callback(new Error('newAndSave error'));
     } else {
-      return callback(null, user._id);
+      return callback(null);
     }
   });
 };

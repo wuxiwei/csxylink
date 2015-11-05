@@ -12,22 +12,20 @@ var fetch = function(req, res, next) {
 	var term = config.term_schedule;    //后台获取学期（每学期后台手动更改）
 
   // first query from db to save time.
-  ScheduleProxy.getScheduleByUsername(username, term, function(err, schedule, user){
+  ScheduleProxy.getScheduleByUsername(username, term, function(err, schedule){
     // user does not exist or other errors
     if(err){
       switch(err.message){
-        case 'The schedule does not exist.':   //数据库内不存在
+        case 'The schedule does not exist.':   //数据库内不存在该学号信息
           console.log("The schedule does not exist.");
           break;
         default: next(err);    //将错误发送至上一层（用法不明）
       }
     }
-    if(schedule){
+    if (schedule) { //数据库中存在该学号并且存在课表信息。
       res.json(_.extend({
         'status': 'ok'
-      }, {
-        'name': user.name
-      }, {
+      },{
         'schedule': JSON.parse(schedule.schedule)
       }));
     } else {
@@ -40,13 +38,14 @@ var fetch = function(req, res, next) {
                 'status': 'School network connection failure'
               });
             break;
-            case 'error':
-              res.json({
-                'status': 'internal error'
-              });
-            break;
+            default:
+				    	res.json({
+				    		'status':
+				    		'internal error' //内部错误
+				    	});
           }
         } else {
+          console.log(name);
           schedule1 = JSON.parse(schedule1);
           res.json(_.extend({
             'status': 'ok'

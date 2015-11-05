@@ -15,14 +15,11 @@ var fetch = function(req, res, next) {
   for (x in termstring)
   {
     if(term_grade[x] == termstring){      //根据时间串定官网term序号
-      term = Number(x);
+      term = Number(x)+1;
     }
   }
-
-          //console.log(term);
-          //return;
   // first query from db to save time.
-  GradeProxy.getGradeByUsername(username, term, function(err, grade, user){
+  GradeProxy.getGradeByUsername(username, term, function(err, grade){
     // user does not exist or other errors
     if(err){
       switch(err.message){
@@ -35,9 +32,7 @@ var fetch = function(req, res, next) {
     if(grade){
       res.json(_.extend({
         'status': 'ok'
-      }, {
-        'name': user.name
-      }, {
+      },{
         'grade': JSON.parse(grade.grade)
       }));
     } else {

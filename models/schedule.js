@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var ScheduleSchema = new Schema({
-  user: { type: ObjectId, ref: 'User' },
+  username: { type: String, default : '匿名用户' },
   schedules: [{ schedule: String, term: Number }],
 
   create_at: { type: Date, default: Date.now },
