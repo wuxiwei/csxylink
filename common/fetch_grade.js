@@ -27,14 +27,14 @@ var fetchGrade = function(username, password, term, callback) {
 				_req.set('Cookie', Cookies);
 				_req.parse(tools.encodingparser).end(function(_err2, _res) {
 					if (_err2) { //请求成绩数据出错
-						return callback(new Error('request grade error'));
+						return callback(new Error('School network connection failure'));
 					}
 					var html = _res.text;
 					var grade = gradeParser.parse(html);
 					grade = JSON.stringify(grade);
 					GradeProxy.UpdateGradeByUsername(username, grade, term, function(err3) {
 						if (err3) { //更新成绩数据出错
-							return callback(new Error('update grade error'));
+              console.log(err3.message+'fetch_grade');
 						}
 					});
 				return callback(null, name, grade);

@@ -37,6 +37,7 @@ function login(username, password, callback) {
 				if (err2) {
 					return callback(new Error('Error image analysis'));
 				} else {
+          console.log("图片验证码");
 					//simulate login
 					var req2 = request.post(loginUrl).type('form'); //表单提交实现伪登陆
 					req2.set('Cookie', Cookies);
@@ -51,11 +52,9 @@ function login(username, password, callback) {
 						if (err3) {
               return callback(new Error('School network connection failure'));
 						}
-						if (res3.text.indexOf('Logout') != - 1) {
+						if (res3.text.indexOf('Logout') != - 1) {      //登陆成功
 							var $ = cheerio.load(res3.text);
 							var name = $('td[align=left]').text();
-							// if user not in mongodb then insert the user into db
-							// if user not in mongodb then insert the user into db
 							return callback(null, name, Cookies);
 						} else {
 							console.log('sssssssssssssssssss' + result.substring(0, 4) + "=" + username + "=" + password);

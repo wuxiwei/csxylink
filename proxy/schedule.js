@@ -6,39 +6,30 @@ var UserProxy = require('../proxy').User;
 
 //课表连接数据库操作
 
-exports.getScheduleByUsername = function (username, term, callback) {
-  Schedule.findOne({username: username}, function(err1, schedule){
-    if (err1) {
+exports.getScheduleByUsername = function (username, callback) {
+  var query = Schedule.findOne({username:username});
+  query.select('schedules');
+  query.exec(function(err,schedule){
+
+    if (err) {
       return callback(new Error('The database does error'));
     }
     if (!schedule) {
       return callback(new Error('The schedule does not exist.'));
+    }else{
+      return callback(null, schedule.schedules);
     }
-    var idx = _.findIndex(schedule.schedules, {term: term});
-    if(idx==-1){
-      return callback(null, null);
-    } else {
-      var rv = schedule.schedules[idx];
-      return callback(null, rv);
-    }
+    
   });
 };
 
-exports.UpdateScheduleByUsername = function(username, schedule, term, callback){
-  Schedule.findOne({username: username}, function(err1, schedule1){
-    if (err1) {
-      return callback(err1);
-    }
-    if (!schedule1) {
-      return callback(new Error('The schedule does not exist.'));
-    }
-    var idx = _.findIndex(schedule.schedules, {term: term});
-    if(idx==-1){
-      schedule1.schedules.push({schedule: schedule, term: term});
-      schedule1.markModified('schedules');
-      schedule1.save(callback);
-    } else {
-      callback(null);
+exports.UpdateScheduleByUsername = function(username, schedule, callback){
+  var conditions = {username : username};
+  var update     = {$set : {schedules : schedule}};
+  var options    = {upsert : true};
+  Schedule.update(conditions, update, options, function(err){
+    if(err) {
+      return callback(err);
     }
   });
 };

@@ -4,3 +4,5 @@
 node_modules
 #交换文件
 .*.swp
+#标签文件
+tags
