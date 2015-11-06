@@ -3,12 +3,16 @@ var agent = require('./simulate_login');
 var ScheduleProxy = require('../proxy').Schedule;
 var tools = require('./tools');
 var scheduleParser = require('../common/parse_schedule');
+var config = require('../config');
 
-var fetchSchedule = function(username, password, term, callback) {
+var fetchSchedule = function(username, password, callback) {
 	agent.login(username, password, function(err, name, Cookies) {
 		if (err) {
 			return callback(new Error('School network connection failure'));
 		} else {
+
+      var term = config.term_schedule;    //后台获取学期（每学期后台手动更改）
+
 			ScheduleProxy.getScheduleByUsername(username, function(err1, schedule1) {
 				if (err1) {
 					console.log(err1.message+'fetch_schedule');

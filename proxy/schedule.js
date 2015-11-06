@@ -1,8 +1,6 @@
 var _ = require('lodash');
 var models = require('../models');
 var Schedule = models.Schedule;
-var User = require('./user');
-var UserProxy = require('../proxy').User;
 
 //课表连接数据库操作
 

@@ -1,54 +1,45 @@
 var _ = require('lodash');
 var models = require('../models');
 var Grade = models.Grade;
-var User = require('./user');
-var UserProxy = require('../proxy').User;
 
 //成绩连接数据库操作
 
-exports.getGradeByUsername = function (username, term, callback) {
-  Grade.findOne({username: username}, function(err1, grade){
-    if (err1) {
-      return callback('The database does error');
+exports.getGradeByUsernameAndTermstring = function (username, termstring, callback) {
+  var query = Grade.findOne({username:username, termstring:termstring});
+  query.select('grades');
+  query.exec(function(err, grade){
+
+    if (err) {
+      return callback(new Error('The database does error'));
     }
     if (!grade) {
       return callback(new Error('The grade does not exist.'));
+    }else{
+      return callback(null, grade.grades);
     }
-    var idx = _.findIndex(grade.grades, {term: term});
-    if(idx==-1){
-      return callback(null, null);
-    } else {
-      var rv = grade.grades[idx];
-      return callback(null, rv);
+    
+  });
+};
+
+exports.UpdateGradeByUsername = function(username, grade, termstring, callback){
+  var conditions = {username : username, termstring: termstring};
+  var update     = {$set : {grades: grade}};
+  var options    = {upsert : true};
+  Grade.update(conditions, update, options, function(err){
+    if(err) {
+      return callback(err);
     }
   });
 };
 
-exports.UpdateGradeByUsername = function(username, grade, term, callback){
-  Grade.findOne({username: username}, function(err1, grade1){
-    if (err1) {
-      return callback(err1);
-    }
-    if (!grade1) {
-      return callback(new Error('The grade does not exist.'));
-    }
-    var idx = _.findIndex(grade.grades, {term: term});
-    if(idx==-1){
-      grade1.grades.push({grade: grade, term: term});
-      grade1.markModified('grades');
-      grade1.save(callback);
-    } else {
-      callback(null);
-    }
-  });
-};
-
-exports.newAndSave = function (username, callback) {
+exports.newAndSave = function (username, termstring, callback) {
   var grade = new Grade();
   grade.username = username;
+  grade.termstring = termstring;
   grade.save(function(err){
     if(err){
-      return callback(new Error('newAndSave error'));
+      return callback(err);
+      //return callback(new Error('newAndSave error'));
     } else {
       return callback(null);
     }

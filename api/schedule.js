@@ -2,15 +2,11 @@ var _ = require('lodash');
 var request = require('superagent');
 var fetchSchedule = require('../common/fetch_schedule').fetchSchedule;
 var ScheduleProxy = require('../proxy').Schedule;
-var UserProxy = require('../proxy').User;
-var config = require('../config');
-
 
 var fetch = function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
   var action = req.body.action;       //区分客户端请求：取课表与改课表(get & update)
-	var term = config.term_schedule;    //后台获取学期（每学期后台手动更改）
 
   if(action == "get"){
     // first query from db to save time.
@@ -32,16 +28,16 @@ var fetch = function(req, res, next) {
           'schedule': JSON.parse(schedule)
         }));
       } else {
-        scheduleaction(res, username, password, term);
+        scheduleaction(res, username, password);
       }
     });
   }else if(action == "update"){
-    scheduleaction(res, username, password, term);
+    scheduleaction(res, username, password);
   }
 };
 
-function scheduleaction(res, username, password, term){
-  fetchSchedule(username, password, term, function(err2, name, schedule1){
+function scheduleaction(res, username, password){
+  fetchSchedule(username, password, function(err2, name, schedule1){
     if(err2){
       switch(err2.message){
         case 'School network connection failure':
