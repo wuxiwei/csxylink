@@ -21,13 +21,13 @@ var fetchGrade = function(username, password, termstring, callback) {
 
 			GradeProxy.getGradeByUsernameAndTermstring(username, termstring, function(err1, grade1) {
 				if (err1) {
-					console.log(err1.message+'fetch_grade');
+					//console.log(err1.message+'fetch_grade');
 				}
         if (!grade1) { //数据库中不存在该学号任何信息成立。
           //如果不存在，则新建一个成绩为空的该学号信息。
           GradeProxy.newAndSave(username, termstring, function(err2) {
             if (err2) {
-              console.log(err2.message+'fetch_grade');
+              //console.log(err2.message+'fetch_grade');
             }
           });
         }
@@ -45,7 +45,7 @@ var fetchGrade = function(username, password, termstring, callback) {
 					grade = JSON.stringify(grade);
 					GradeProxy.UpdateGradeByUsername(username, grade, termstring, function(err3) {
 						if (err3) { //更新成绩数据出错
-              console.log(err3.message+'fetch_grade');
+              //console.log(err3.message+'fetch_grade');
 						}
 					});
 				return callback(null, name, grade);

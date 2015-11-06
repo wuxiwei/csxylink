@@ -15,7 +15,7 @@ var fetch = function(req, res, next) {
       if(err){
         switch(err.message){
           case 'The schedule does not exist.':   //数据库内不存在该学号信息
-            console.log("The schedule does not exist.");
+            //console.log("The schedule does not exist.");
             break;
           default: next(err);    //将错误发送至上一层（用法不明）
         }

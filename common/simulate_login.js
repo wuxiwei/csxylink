@@ -19,7 +19,7 @@ function login(username, password, callback) {
 	//initial session here
 	request.get(loginUrl).end(function(err, res) {
 		if (err) {
-      console.log("School network connection failure");
+      //console.log("School network connection failure");
 			return callback(new Error('School network connection failure'));
 		}
 		Cookies = res.headers['set-cookie'].pop().split(';')[0]; //获取该会话cookie
@@ -37,7 +37,7 @@ function login(username, password, callback) {
 				if (err2) {
 					return callback(new Error('Error image analysis'));
 				} else {
-          console.log("图片验证码");
+          //console.log("图片验证码");
 					//simulate login
 					var req2 = request.post(loginUrl).type('form'); //表单提交实现伪登陆
 					req2.set('Cookie', Cookies);
@@ -57,7 +57,7 @@ function login(username, password, callback) {
 							var name = $('td[align=left]').text();
 							return callback(null, name, Cookies);
 						} else {
-							console.log('sssssssssssssssssss' + result.substring(0, 4) + "=" + username + "=" + password);
+							//console.log('sssssssssssssssssss' + result.substring(0, 4) + "=" + username + "=" + password);
 							return callback(new Error('login failed'));
 						}
 					});

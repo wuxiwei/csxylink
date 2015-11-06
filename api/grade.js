@@ -15,7 +15,7 @@ var fetch = function(req, res, next) {
       if(err){
         switch(err.message){
           case 'The grade does not exist.':
-            console.log("The grade does not exist.");
+            //console.log("The grade does not exist.");
             break;
           default: next(err);
         }

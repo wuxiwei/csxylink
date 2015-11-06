@@ -15,7 +15,7 @@ var fetchSchedule = function(username, password, callback) {
 
 			ScheduleProxy.getScheduleByUsername(username, function(err1, schedule1) {
 				if (err1) {
-					console.log(err1.message+'fetch_schedule');
+					//console.log(err1.message+'fetch_schedule');
 				}
 
           //console.log(schedule1);
@@ -23,7 +23,7 @@ var fetchSchedule = function(username, password, callback) {
 					//如果不存在则，新建一个课表为空的该学号信息；如果存在但课表不存在，则没有变化。
 					ScheduleProxy.newAndSave(username, function(err2) {
 						if (err2) {
-							console.log(err2.message+'fetch_schedule');
+							//console.log(err2.message+'fetch_schedule');
 						}
 					});
 				}
@@ -44,7 +44,7 @@ var fetchSchedule = function(username, password, callback) {
 
             ScheduleProxy.UpdateScheduleByUsername(username, schedule, function(err3) {
               if (err3) { //更新课表数据出错
-                console.log(err3.message+'fetch_schedule');
+                //console.log(err3.message+'fetch_schedule');
               }
             });
             return callback(null, name, schedule);
