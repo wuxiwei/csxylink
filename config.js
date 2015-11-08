@@ -1,7 +1,7 @@
 var config = {
   port: 5000,
-  term_schedule: 15,    //查课表看下拉框第几个
-  term_grade : new Array(
+  term_schedule: 15,    //查课表看下拉框第几个,每学期维护
+  term_grade : new Array(     //每学期维护
     "2008-2009学年第1学期",
     "2008-2009学年第2学期",
     "2009-2010学年第1学期",
