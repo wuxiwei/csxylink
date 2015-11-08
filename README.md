@@ -43,7 +43,7 @@
 `$ curl -d 'username=学号&password=密码' http://yourserver:port/api/login`
 #####请求
 #####响应
--`{"status":"ok","man":"吴希伟"}`成功  
+-`{"status":"ok","man":"姓名"}`成功  
 -`{"status":"login failed"}`失败  
 -`{"status":"School network connection failure"}`校网或网络问题
 ####2.课表查询
@@ -53,7 +53,7 @@
 -`action=update`更新课表
 #####响应
 -`{"status":"ok","schedule":{课表}}`成功  
--`{"status":"School network connection failure"}`校网或网络问题（学号密码错误）  
+-`{"status":"School network connection failure"}`校网或网络问题（学号或密码错误）  
 -`"status":"internal error"`内部错误（概率小）
 ####3.成绩查询
 `$ curl -d 'username=学号&password=密码&termstring=时间段&action=动作' http://yourserver:port/api/grade`
@@ -63,7 +63,7 @@
 -`termstring=2014-2015学年第1学期`查询相应时间段成绩
 #####响应
 -`{"status":"ok","schedule":{成绩}}`成功  
--`{"status":"School network connection failure"}`校网或网络问题（学号密码错误）  
+-`{"status":"School network connection failure"}`校网或网络问题（学号或密码错误）  
 -`"status":"internal error"`内部错误（概率小）
 ##后台维护
 1.每学期更新config配置文件  
