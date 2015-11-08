@@ -18,7 +18,7 @@
 2.安装tesseract-ocr（图像解析）  
 `$ sudo apt-get install tesseract-ocr`  
 3.安装git  
-`$ apt-get install git`  
+`$ apt-get install git`
 ##配置环境
 1.安装nvm（Node Version Manager）  
 `$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.2/install.sh | bash`  
@@ -40,29 +40,34 @@
 `$ nohup node app.js &`
 ##用法说明
 ####1.登录验证
-`$ curl -d 'username=学号&password=密码' http://yourserver:port/api/login`  
+`$ curl -d 'username=学号&password=密码' http://yourserver:port/api/login`
+#####请求
+#####响应
+-`{"status":"ok","man":"吴希伟"}`成功  
+-`{"status":"login failed"}`失败  
+-`{"status":"School network connection failure"}`校网或网络问题
 ####2.课表查询
 `$ curl -d 'username=学号&password=密码&action=动作' http://yourserver:port/api/schedule`  
 #####请求
 -`action=get`获取课表  
--`action=update`更新课表  
+-`action=update`更新课表
 #####响应
--`{"status":"ok","schedule":{课表}`成功  
--`{"status":"School network connection failure"}`校网或网络问题（学号密码需正确）  
--`"status":"internal error"`内部错误（概率小）  
+-`{"status":"ok","schedule":{课表}}`成功  
+-`{"status":"School network connection failure"}`校网或网络问题（学号密码错误）  
+-`"status":"internal error"`内部错误（概率小）
 ####3.成绩查询
-`$ curl -d 'username=学号&password=密码&termstring=时间段&action=动作' http://yourserver:port/api/grade`  
+`$ curl -d 'username=学号&password=密码&termstring=时间段&action=动作' http://yourserver:port/api/grade`
 #####请求
 -`action=get`获取成绩  
 -`action=update`更新成绩  
--`termstring=2014-2015学年第1学期`查询相应时间段成绩  
+-`termstring=2014-2015学年第1学期`查询相应时间段成绩
 #####响应
--`{"status":"ok","schedule":{成绩}`成功  
--`{"status":"School network connection failure"}`校网或网络问题（学号密码需正确）  
--`"status":"internal error"`内部错误（概率小）  
+-`{"status":"ok","schedule":{成绩}}`成功  
+-`{"status":"School network connection failure"}`校网或网络问题（学号密码错误）  
+-`"status":"internal error"`内部错误（概率小）
 ##后台维护
 1.每学期更新config配置文件  
-2.每学期清空课表数据库（可选）  
+2.每学期清空课表数据库（可选）
 ##开发原则
 1.利用缓存和数据库，尽可能减少访问校网。  
 2.只要获取到数据，不管出现任何异常问题，首先确保数据返回给用户。（注意return的使用）
