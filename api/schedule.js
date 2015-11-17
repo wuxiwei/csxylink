@@ -8,31 +8,37 @@ var fetch = function(req, res, next) {
   var password = req.body.password;
   var action = req.body.action;       //区分客户端请求：取课表与改课表(get & update)
 
-  if(action == "get"){
-    // first query from db to save time.
-    ScheduleProxy.getScheduleByUsername(username, function(err, schedule){
-      // user does not exist or other errors
-      if(err){
-        switch(err.message){
-          case 'The schedule does not exist.':   //数据库内不存在该学号信息
-            //console.log("The schedule does not exist.");
-            break;
-          default: next(err);    //将错误发送至上一层（用法不明）
+  if(typeof(username)=="undefined" || typeof(password)=="undefined" || typeof(action)=="undefined"){
+		 res.json({
+       'status': 'School network connection failure'
+		 });
+  }else{
+    if(action == "get"){
+      // first query from db to save time.
+      ScheduleProxy.getScheduleByUsername(username, function(err, schedule){
+        // user does not exist or other errors
+        if(err){
+          switch(err.message){
+            case 'The schedule does not exist.':   //数据库内不存在该学号信息
+              //console.log("The schedule does not exist.");
+              break;
+            default: next(err);    //将错误发送至上一层（用法不明）
+          }
         }
-      }
-      
-      if (schedule) { //数据库中存在该学号并且存在课表信息。
-        res.json(_.extend({
-          'status': 'ok'
-        },{
-          'schedule': JSON.parse(schedule)
-        }));
-      } else {
-        scheduleaction(res, username, password);
-      }
-    });
-  }else if(action == "update"){
-    scheduleaction(res, username, password);
+        
+        if (schedule) { //数据库中存在该学号并且存在课表信息。
+          res.json(_.extend({
+            'status': 'ok'
+          },{
+            'schedule': JSON.parse(schedule)
+          }));
+        } else {
+          scheduleaction(res, username, password);
+        }
+      });
+    }else if(action == "update"){
+      scheduleaction(res, username, password);
+    }
   }
 };
 

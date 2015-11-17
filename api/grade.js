@@ -8,31 +8,37 @@ var fetch = function(req, res, next) {
   var password = req.body.password;
   var termstring = req.body.termstring;    //取得查成绩的时间段字符串
   var action = req.body.action; //区分客户端请求：取成绩与改成绩(get & update)
-  if(action == "get"){
-    // first query from db to save time.
-    GradeProxy.getGradeByUsernameAndTermstring(username, termstring, function(err, grade){
-      // user does not exist or other errors
-      if(err){
-        switch(err.message){
-          case 'The grade does not exist.':
-            //console.log("The grade does not exist.");
-            break;
-          default: next(err);
+  if(typeof(username)=="undefined" || typeof(password)=="undefined" || typeof(action)=="undefined"){
+		 res.json({
+       'status': 'School network connection failure'
+		 });
+  }else{
+    if(action == "get"){
+      // first query from db to save time.
+      GradeProxy.getGradeByUsernameAndTermstring(username, termstring, function(err, grade){
+        // user does not exist or other errors
+        if(err){
+          switch(err.message){
+            case 'The grade does not exist.':
+              //console.log("The grade does not exist.");
+              break;
+            default: next(err);
+          }
         }
-      }
 
-      if(grade){
-        res.json(_.extend({
-          'status': 'ok'
-        },{
-          'grade': JSON.parse(grade)
-        }));
-      } else {
-        gradeaction(res, username, password, termstring);
-      }
-    });
-  }else if(action == "update"){
-    gradeaction(res, username, password, termstring);
+        if(grade){
+          res.json(_.extend({
+            'status': 'ok'
+          },{
+            'grade': JSON.parse(grade)
+          }));
+        } else {
+          gradeaction(res, username, password, termstring);
+        }
+      });
+    }else if(action == "update"){
+      gradeaction(res, username, password, termstring);
+    }
   }
 };
 
