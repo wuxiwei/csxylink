@@ -539,3 +539,82 @@ TypeError: Cannot read property 'toString' of undefined
     at /root/csxylink/node_modules/nodecr/lib/nodecr.js:107:11
     at fs.js:334:14
     at FSReqWrap.oncomplete (fs.js:95:15)
+listening 5000
+node-tesseract: Running 'tesseract image/201312050.jpg /tmp/tmp-18336JjIbvnIwwrW5'
+node-tesseract: Deleting '/tmp/tmp-18336JjIbvnIwwrW5.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312050.jpg /tmp/tmp-18336h3rasg8CzVJg'
+node-tesseract: Deleting '/tmp/tmp-18336h3rasg8CzVJg.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312050.jpg /tmp/tmp-183365pIksJha7Lw5'
+node-tesseract: Deleting '/tmp/tmp-183365pIksJha7Lw5.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-183368jbbChF06Sf9'
+node-tesseract: Deleting '/tmp/tmp-183368jbbChF06Sf9.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336RpgZnL8iG4Wm'
+node-tesseract: Deleting '/tmp/tmp-18336RpgZnL8iG4Wm.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336lJFt8phLuba2'
+node-tesseract: Deleting '/tmp/tmp-18336lJFt8phLuba2.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336a3aDYnna68BL'
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336Kygs6WC7d2bV'
+node-tesseract: Deleting '/tmp/tmp-18336a3aDYnna68BL.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Deleting '/tmp/tmp-18336Kygs6WC7d2bV.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336gPNFBoIka7Rj'
+node-tesseract: Deleting '/tmp/tmp-18336gPNFBoIka7Rj.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336kObKSvwqdrKZ'
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-183364KBtbbcmQDMI'
+node-tesseract: Deleting '/tmp/tmp-18336kObKSvwqdrKZ.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Deleting '/tmp/tmp-183364KBtbbcmQDMI.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336fLLOqG71VQEK'
+node-tesseract: Deleting '/tmp/tmp-18336fLLOqG71VQEK.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-1833651NOfGqwh5rC'
+node-tesseract: Deleting '/tmp/tmp-1833651NOfGqwh5rC.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336h8KxErt0AZUi'
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336xCck0YVXbfIj'
+node-tesseract: Deleting '/tmp/tmp-18336h8KxErt0AZUi.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Deleting '/tmp/tmp-18336xCck0YVXbfIj.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336cTymUV04gLyB'
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336vSqpz2SlwAt0'
+node-tesseract: Deleting '/tmp/tmp-18336cTymUV04gLyB.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Deleting '/tmp/tmp-18336vSqpz2SlwAt0.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336IHBKo09KKkLw'
+node-tesseract: Deleting '/tmp/tmp-18336IHBKo09KKkLw.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-183360rcU5TKek5G1'
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336FD0NfAs6rVVP'
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336g3zovthTTqqF'
+node-tesseract: Deleting '/tmp/tmp-183360rcU5TKek5G1.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Deleting '/tmp/tmp-18336FD0NfAs6rVVP.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Deleting '/tmp/tmp-18336g3zovthTTqqF.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/281312008.jpg /tmp/tmp-18336AZ9iMQ37bCQn'
+node-tesseract: Deleting '/tmp/tmp-18336AZ9iMQ37bCQn.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/281312008.jpg /tmp/tmp-18336Ih3VIA7j59fQ'
+node-tesseract: Deleting '/tmp/tmp-18336Ih3VIA7j59fQ.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336kiSpGXNC8mJY'
+node-tesseract: Deleting '/tmp/tmp-18336kiSpGXNC8mJY.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336ZRYCdqEbV07m'
+node-tesseract: Running 'tesseract image/201312008.jpg /tmp/tmp-18336NCDZb6Gg6JHw'
+node-tesseract: Deleting '/tmp/tmp-18336ZRYCdqEbV07m.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Deleting '/tmp/tmp-18336NCDZb6Gg6JHw.txt'
+node-tesseract: Preprocessor cleanup
