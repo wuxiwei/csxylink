@@ -6,22 +6,29 @@ var config = require('../config');
 var login = function(req, res, next) {
 	var username = req.body.username; //获取学号
 	var password = req.body.password; //获取密码
-	UserProxy.getUserByUsername(username, function(err, user) {
-		if (user) { //如果数据库存在直接返回
-      if(user.password == password){
-        res.json(_.extend({
-          'status': 'ok'
-        },
-        {
-          'man': user.name
-        }));
-      }else{
-        loginaction(res, username, password);
+  if(typeof(username)=="undefined" || typeof(password)=="undefined"){
+		 res.json({
+		 	'status':
+		 	'login failed'        //帐号密码出错
+		 });
+  }else{
+    UserProxy.getUserByUsername(username, function(err, user) {
+      if (user) { //如果数据库存在直接返回
+        if(user.password == password){
+          res.json(_.extend({
+            'status': 'ok'
+          },
+          {
+            'man': user.name
+          }));
+        }else{
+          loginaction(res, username, password);
+        }
+      } else {
+          loginaction(res, username, password);
       }
-		} else {
-        loginaction(res, username, password);
-		}
-	});
+    });
+  }
 };
 
 function loginaction(res, username, password){
