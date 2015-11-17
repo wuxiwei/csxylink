@@ -523,3 +523,19 @@ TypeError: Cannot read property 'toString' of undefined
     at /root/csxylink/node_modules/nodecr/lib/nodecr.js:107:11
     at fs.js:334:14
     at FSReqWrap.oncomplete (fs.js:95:15)
+listening 5000
+node-tesseract: Running 'tesseract image/201312050.jpg /tmp/tmp-17966yxfHxP0EVzxR'
+node-tesseract: Deleting '/tmp/tmp-17966yxfHxP0EVzxR.txt'
+node-tesseract: Preprocessor cleanup
+node-tesseract: Running 'tesseract image/undefined.jpg /tmp/tmp-17966q33WYpCgRnuX'
+node-tesseract: Deleting '/tmp/tmp-17966q33WYpCgRnuX.txt'
+node-tesseract: Preprocessor cleanup
+/root/csxylink/common/simulate_login.js:45
+						'WebUserNO': username.toString(),
+						                     ^
+TypeError: Cannot read property 'toString' of undefined
+    at /root/csxylink/common/simulate_login.js:45:28
+    at f (/root/csxylink/node_modules/nodecr/lib/nodecr.js:66:9)
+    at /root/csxylink/node_modules/nodecr/lib/nodecr.js:107:11
+    at fs.js:334:14
+    at FSReqWrap.oncomplete (fs.js:95:15)
