@@ -6,6 +6,7 @@ var config = require('../config');
 var login = function(req, res, next) {
 	var username = req.body.username; //获取学号
 	var password = req.body.password; //获取密码
+  console.log(username+"sdfdsfa");
   if(typeof(username)=="undefined" || typeof(password)=="undefined"){
 		 res.json({
 		 	'status':
