@@ -38,6 +38,7 @@
 也可以先不管，对项目没有影响，直接等待会自动跳过。  
 5.后台运行  
 `$ nohup node app.js &`
+后期可以在目录下nohup.out中查看日志
 ##用法说明
 ####1.登录验证
 `$ curl -d 'username=学号&password=密码' http://yourserver:port/api/login`
