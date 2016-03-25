@@ -38,6 +38,7 @@
 也可以先不管，对项目没有影响，直接等待会自动跳过。  
 5.后台运行  
 `$ nohup node app.js &`
+后期可以在目录下nohup.out中查看日志
 ##用法说明
 ####1.登录验证
 `$ curl -d 'username=学号&password=密码' http://yourserver:port/api/login`
@@ -54,7 +55,7 @@
 #####响应
 -`{"status":"ok","schedule":{课表}}`成功  
 -`{"status":"School network connection failure"}`校网或网络问题（学号或密码错误）  
--`"status":"internal error"`内部错误（概率小）
+-`{"status":"internal error"}`内部错误（概率小）
 ####3.成绩查询
 `$ curl -d 'username=学号&password=密码&termstring=时间段&action=动作' http://yourserver:port/api/grade`
 #####请求
@@ -64,10 +65,15 @@
 #####响应
 -`{"status":"ok","schedule":{成绩}}`成功  
 -`{"status":"School network connection failure"}`校网或网络问题（学号或密码错误）  
--`"status":"internal error"`内部错误（概率小）
+-`{"status":"internal error"}`内部错误（概率小）
 ##后台维护
 1.每学期更新config配置文件  
 2.每学期清空课表数据库（可选）
 ##开发原则
 1.利用缓存和数据库，尽可能减少访问校网。  
 2.只要获取到数据，不管出现任何异常问题，首先确保数据返回给用户。（注意return的使用）
+##新的想法
+关于后台每学期更新配置表不方便的解决方案
+在每次根据学期字段的位置请求数据之前，我们先将网站上的所有字段通过空请求获取到存入数组,
+两个好处：一：不用每学期更改相应字段，客户端也可以根据学期段来获取。二：校网如果不定时更新该数组，也可以很好的自动处理。
+建议：也可以将数组存入缓存中，避免每次请求都要先获取。
