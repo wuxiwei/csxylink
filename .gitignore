@@ -6,6 +6,4 @@ node_modules
 .*.swp
 #标签文件
 tags
-#日志文件
 nohup.out
-
