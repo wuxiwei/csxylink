@@ -41,6 +41,7 @@ function login(username, password, callback) {
 					//simulate login
 					var req2 = request.post(loginUrl).type('form'); //表单提交实现伪登陆
 					req2.set('Cookie', Cookies);
+          console.log(username+"+++"+Cookies);
 					var params = {
 						'WebUserNO': username.toString(),
 						'Password': password.toString(),
