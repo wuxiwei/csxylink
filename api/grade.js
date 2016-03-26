@@ -8,7 +8,8 @@ var fetch = function(req, res, next) {
   var password = req.body.password;
   var termstring = req.body.termstring;    //取得查成绩的时间段字符串
   var action = req.body.action; //区分客户端请求：取成绩与改成绩(get & update)
-  if(typeof(username)=="undefined" || typeof(password)=="undefined" || typeof(action)=="undefined"){
+  // if(typeof(username)=="undefined" || typeof(password)=="undefined" || typeof(action)=="undefined"){
+  if(typeof(username)=="undefined" || username=="" || username==null || typeof(password)=="undefined" || password=="" || password==null){
 		 res.json({
        'status': 'School network connection failure'
 		 });

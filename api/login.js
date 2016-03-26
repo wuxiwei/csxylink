@@ -7,7 +7,8 @@ var login = function(req, res, next) {
 	var username = req.body.username; //获取学号
 	var password = req.body.password; //获取密码
   console.log(username+"sdfdsfa");
-  if(typeof(username)=="undefined" || typeof(password)=="undefined"){
+  // if(typeof(username)=="undefined" || typeof(password)=="undefined" || typeof(action)=="undefined"){
+  if(typeof(username)=="undefined" || username=="" || username==null || typeof(password)=="undefined" || password=="" || password==null){
 		 res.json({
 		 	'status':
 		 	'login failed'        //帐号密码出错
