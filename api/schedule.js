@@ -45,7 +45,6 @@ var fetch = function(req, res, next) {
 
 function scheduleaction(res, username, password){
   fetchSchedule(username, password, function(err2, name, schedule1){
-							console.log('schedule+++++'+schedule1);
     if(err2){
       switch(err2.message){
         case 'School network connection failure':
