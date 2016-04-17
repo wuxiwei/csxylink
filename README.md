@@ -63,7 +63,7 @@
 -`action=update`更新成绩  
 -`termstring=2014-2015学年第1学期`查询相应时间段成绩
 #####响应
--`{"status":"ok","schedule":{成绩}}`成功  
+-`{"status":"ok","grade":{成绩}}`成功  
 -`{"status":"School network connection failure"}`校网或网络问题（学号或密码错误）  
 -`{"status":"internal error"}`内部错误（概率小）
 ##后台维护
